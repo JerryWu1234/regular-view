@@ -13,7 +13,7 @@ const go = () => {
     <div i-carbon-campsite text-4xl inline-block />
     <p>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
+        Vitesse Lite1111
       </a>
     </p>
     <p>
