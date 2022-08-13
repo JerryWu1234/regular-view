@@ -9,3 +9,9 @@ body,
 html.dark {
   background: #121212;
 }
+
+.input{
+  @apply outline-none border border-transparent focus-within:border-blue-400;
+  @apply bg-gray-50 hover:bg-true-gray-100;
+  @apply dark:(bg-true-gray-700 hover:bg-true-gray-600 )
+}
