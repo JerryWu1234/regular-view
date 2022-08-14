@@ -11,7 +11,11 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.0.2",
     "@vueuse/core": "^9.0.0",
+    "@vueuse/head": "^0.7.9",
+    "@vueuse/motion": "2.0.0-beta.12",
+    "codemirror": "^6.0.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },
@@ -32,6 +36,7 @@
     "unplugin-vue-components": "^0.21.2",
     "vite": "^3.0.3",
     "vite-plugin-pages": "^0.25.0",
+    "vite-ssg": "^0.20.2",
     "vitest": "^0.19.1",
     "vue-tsc": "^0.39.0"
   },
