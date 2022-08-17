@@ -37,6 +37,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const initEdior: typeof import('./src/composables/editor')['initEdior']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./src/composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -80,6 +81,7 @@ declare global {
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const regularValue: typeof import('./src/composables/data')['regularValue']
+  const replaceValue: typeof import('./src/composables/data')['replaceValue']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
@@ -308,6 +310,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initEdior: UnwrapRef<typeof import('./src/composables/editor')['initEdior']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -351,6 +354,7 @@ declare module '@vue/runtime-core' {
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly regularValue: UnwrapRef<typeof import('./src/composables/data')['regularValue']>
+    readonly replaceValue: UnwrapRef<typeof import('./src/composables/data')['replaceValue']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
