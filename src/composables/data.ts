@@ -1,2 +1,5 @@
 export const regularValue = ref('')
 export const signal = ref('gm')
+export const replaceValue = ref('')
+export const fullResult = ref('')
+export const context = ref('')
