@@ -16,4 +16,8 @@ initEdior(text, editor)
 .cm-focused {
   outline: none !important;
 }
+.cm-editor{
+  overflow: hidden;
+  height: 100%;
+}
 </style>
