@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 export const regularValue = ref('')
 export const signal = ref('gm')
 export const replaceValue = ref('')
@@ -14,4 +12,9 @@ export const onLeftNumberline = useToggle(leftNumberline)
 export const onRightNumberline = useToggle(rightNumberline)
 export const ondeleteContext = () => {
   context.value = ''
+}
+
+export const ondeleteRegularValue = () => {
+  regularValue.value = ''
+  replaceValue.value = ''
 }

@@ -73,6 +73,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const ondeleteContext: typeof import('./src/composables/data')['ondeleteContext']
+  const ondeleteRegularValue: typeof import('./src/composables/data')['ondeleteRegularValue']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const reactify: typeof import('@vueuse/core')['reactify']
@@ -355,6 +356,7 @@ declare module '@vue/runtime-core' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly ondeleteContext: UnwrapRef<typeof import('./src/composables/data')['ondeleteContext']>
+    readonly ondeleteRegularValue: UnwrapRef<typeof import('./src/composables/data')['ondeleteRegularValue']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>

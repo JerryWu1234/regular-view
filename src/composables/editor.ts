@@ -16,7 +16,7 @@ function edior(value: Ref<string>, name: Ref<HTMLElement>) {
       lineNumbersComp.of([]),
       lineWrappingComp.of([]),
       EditorView.updateListener.of((v: ViewUpdate) => {
-        if (v.docChanged)
+        if (v.docChanged && value.value !== view.state.doc.toString())
           value.value = view.state.doc.toString()
       }),
       javascript(),
@@ -43,6 +43,12 @@ export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props)
         effects: lineWrappingComp.reconfigure(v ? EditorView.lineWrapping : []),
       })
     })
+
+    watch(() => props.modelValue, (v) => {
+      ediorInstance.dispatch({
+        changes: { from: 0, to: ediorInstance.state.doc.length, insert: v },
+      })
+    }, { immediate: true })
   })
 }
 

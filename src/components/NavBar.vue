@@ -7,7 +7,7 @@
     <button i-carbon-undo class="icon-btn" />
     <button i-carbon-redo class="icon-btn" />
 
-    <button i-carbon-delete class="icon-btn" />
+    <button v-if="regularValue.length || replaceValue.length" i-carbon-delete class="icon-btn" @click="ondeleteRegularValue()" />
     <div />
     <button dark:i-carbon-moon i-carbon-sun class="icon-btn" @click="toggleDark()" />
   </div>
