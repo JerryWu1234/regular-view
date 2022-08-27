@@ -6,10 +6,12 @@ export const context = ref('')
 export const leftNumberline = ref(false)
 export const rightNumberline = ref(false)
 export const lineWrapping = ref(false)
+export const repleaceState = ref(false)
 
 export const onLineWrapping = useToggle(lineWrapping)
 export const onLeftNumberline = useToggle(leftNumberline)
 export const onRightNumberline = useToggle(rightNumberline)
+export const onRepleaceNavChange = useToggle(repleaceState)
 export const ondeleteContext = () => {
   context.value = ''
 }

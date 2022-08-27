@@ -66,6 +66,7 @@ declare global {
   const onMounted: typeof import('vue')['onMounted']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
+  const onRepleaceNavChange: typeof import('./src/composables/data')['onRepleaceNavChange']
   const onRightNumberline: typeof import('./src/composables/data')['onRightNumberline']
   const onScopeDispose: typeof import('vue')['onScopeDispose']
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
@@ -91,6 +92,7 @@ declare global {
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const regularValue: typeof import('./src/composables/data')['regularValue']
   const replaceValue: typeof import('./src/composables/data')['replaceValue']
+  const repleaceState: typeof import('./src/composables/data')['repleaceState']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
@@ -349,6 +351,7 @@ declare module '@vue/runtime-core' {
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
+    readonly onRepleaceNavChange: UnwrapRef<typeof import('./src/composables/data')['onRepleaceNavChange']>
     readonly onRightNumberline: UnwrapRef<typeof import('./src/composables/data')['onRightNumberline']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
@@ -374,6 +377,7 @@ declare module '@vue/runtime-core' {
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly regularValue: UnwrapRef<typeof import('./src/composables/data')['regularValue']>
     readonly replaceValue: UnwrapRef<typeof import('./src/composables/data')['replaceValue']>
+    readonly repleaceState: UnwrapRef<typeof import('./src/composables/data')['repleaceState']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
