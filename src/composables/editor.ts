@@ -1,7 +1,7 @@
 import type { ViewUpdate } from '@codemirror/view'
 import { lineNumbers } from '@codemirror/view'
 import { EditorView } from 'codemirror'
-import { Compartment } from '@codemirror/state'
+import { Compartment, EditorSelection } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
 
 import type { Ref } from 'vue'
@@ -31,7 +31,6 @@ function edior(value: Ref<string>, name: Ref<HTMLElement>) {
 export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props) => {
   onMounted(() => {
     const ediorInstance = edior(value, name)
-
     watch(() => props.lineNumbers, (v) => {
       ediorInstance.dispatch({
         effects: lineNumbersComp.reconfigure(v ? lineNumbers() : []),
@@ -49,6 +48,13 @@ export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props)
         changes: { from: 0, to: ediorInstance.state.doc.length, insert: v },
       })
     }, { immediate: true })
+
+    watch(() => props.matches, (list: Array<RegExpMatchArray>) => {
+      const rangelist = list.map((item) => {
+        return [item?.index as number, item?.index as number + item?.[0]?.length]
+      })
+      console.log(rangelist)
+    })
   })
 }
 

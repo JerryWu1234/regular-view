@@ -51,6 +51,8 @@ declare global {
   const lineWrapping: typeof import('./src/composables/data')['lineWrapping']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
+  const matchResult: typeof import('./src/composables/data')['matchResult']
+  const matchesList: typeof import('./src/composables/data')['matchesList']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -336,6 +338,8 @@ declare module '@vue/runtime-core' {
     readonly lineWrapping: UnwrapRef<typeof import('./src/composables/data')['lineWrapping']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly matchResult: UnwrapRef<typeof import('./src/composables/data')['matchResult']>
+    readonly matchesList: UnwrapRef<typeof import('./src/composables/data')['matchesList']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>

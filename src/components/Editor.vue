@@ -5,6 +5,7 @@ const props = defineProps({
   modelValue: String,
   lineNumbers: Boolean,
   lineWrapping: Boolean,
+  matches: Array,
 })
 
 const editor = ref()
