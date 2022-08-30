@@ -6,6 +6,7 @@ const props = defineProps({
   lineNumbers: Boolean,
   lineWrapping: Boolean,
   matches: Array,
+  readonly: Boolean,
 })
 
 const editor = ref()

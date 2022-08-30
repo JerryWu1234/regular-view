@@ -45,7 +45,7 @@ const { copy } = useClipboard()
           <button i-carbon-copy class="icon-btn m-2" @click="copy(fullResult)" />
         </div>
       </nav>
-      <Editor v-model="fullResult" :line-numbers="rightNumberline" class="my-2 mx-4 flex-auto  overflow-y-auto" />
+      <Editor v-model="fullResult" :line-numbers="rightNumberline" readonly class="my-2 mx-4 flex-auto  overflow-y-auto" />
     </div>
   </div>
 </template>

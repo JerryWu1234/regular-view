@@ -1,36 +1,83 @@
-import type { ViewUpdate } from '@codemirror/view'
-import { lineNumbers } from '@codemirror/view'
+import type { DecorationSet, ViewUpdate } from '@codemirror/view'
+import { Decoration, lineNumbers } from '@codemirror/view'
 import { EditorView } from 'codemirror'
-import { Compartment, EditorSelection } from '@codemirror/state'
+import { Compartment, EditorSelection, EditorState, StateEffect, StateField } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
-
 import type { Ref } from 'vue'
 import type Editor from '../components/Editor.vue'
 type Props = InstanceType<typeof Editor>['$props']
 
 const lineWrappingComp = funcLineWrapping()
 const lineNumbersComp = funcLineWrapping()
-function edior(value: Ref<string>, name: Ref<HTMLElement>) {
+const addUnderline = StateEffect.define<{ from: number; to: number }>({
+  map: ({ from, to }, change) => ({ from: change.mapPos(from), to: change.mapPos(to) }),
+})
+const underlineMark = Decoration.mark({ class: 'cm-underline' })
+const underlineTheme = EditorView.baseTheme({
+  '.cm-underline': { textDecoration: 'underline 3px red' },
+})
+
+const underlineField = StateField.define<DecorationSet>({
+  create() {
+    return Decoration.none
+  },
+  update(underlines, tr) {
+    underlines = underlines.map(tr.changes)
+    for (const e of tr.effects) {
+      if (e.is(addUnderline)) {
+        underlines = underlines.update({
+          add: [underlineMark.range(e.value.from, e.value.to)],
+        })
+      }
+    }
+    return underlines
+  },
+  provide: f => EditorView.decorations.from(f),
+})
+
+function underlineSelection(view: EditorView) {
+  const effects: StateEffect<unknown>[] = [{ from: 2, to: 3, empty: false }]
+    .filter(r => !r.empty)
+    .map(({ from, to }) => addUnderline.of({ from, to }))
+  if (!effects.length)
+    return false
+
+  if (!view.state.field(underlineField, false)) {
+    effects.push(StateEffect.appendConfig.of([underlineField,
+      underlineTheme]))
+  }
+  view.dispatch({ effects })
+  return true
+}
+
+function edior(value: Ref<string>, name: Ref<HTMLElement>, props: Props) {
+  const extensions = [
+    lineNumbersComp.of([]),
+    lineWrappingComp.of([]),
+    javascript(),
+  ]
+  if (props.readonly)
+    extensions.push(EditorState.readOnly.of(true))
+
   const view = new EditorView({
     extensions: [
-      lineNumbersComp.of([]),
-      lineWrappingComp.of([]),
       EditorView.updateListener.of((v: ViewUpdate) => {
         if (v.docChanged && value.value !== view.state.doc.toString())
           value.value = view.state.doc.toString()
       }),
-      javascript(),
+      ...extensions,
     ],
 
     doc: value.value,
     parent: name.value,
   })
+
   return view
 }
 
 export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props) => {
   onMounted(() => {
-    const ediorInstance = edior(value, name)
+    const ediorInstance = edior(value, name, props)
     watch(() => props.lineNumbers, (v) => {
       ediorInstance.dispatch({
         effects: lineNumbersComp.reconfigure(v ? lineNumbers() : []),
@@ -47,6 +94,8 @@ export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props)
       ediorInstance.dispatch({
         changes: { from: 0, to: ediorInstance.state.doc.length, insert: v },
       })
+      // if (v !== '')
+      // underlineSelection(ediorInstance)
     }, { immediate: true })
 
     watch(() => props.matches, (list: Array<RegExpMatchArray>) => {
