@@ -1,5 +1,5 @@
 <script setup>
-import { context, fullResult, leftNumberline, lineWrapping, matchesList, onLeftNumberline, onLineWrapping, onRightNumberline, rightNumberline } from '../composables/index'
+import { context, fullResult, index, leftLineWrapping, leftNumberline, matchesList, onLeftLineWrapping, onLeftNumberline, onRightNumberline, rightLineWrapping, rightNumberline } from '../composables/index'
 const { copy } = useClipboard()
 </script>
 
@@ -8,7 +8,7 @@ const { copy } = useClipboard()
     <div class="w-[50%] flex flex-col border-r h-full border-gray-400 border-opacity-25 overflow-hidden ">
       <nav class="flex px-4 my-2">
         <div class="flex-auto" />
-        <div :class="lineWrapping === true && 'active'" @click="onLineWrapping()">
+        <div :class="leftLineWrapping === true && 'active'" @click="onLeftLineWrapping()">
           <button i-carbon-transpose class="icon-btn m-2" />
         </div>
         <div :class="leftNumberline === true && 'active'" @click="onLeftNumberline()">
@@ -21,22 +21,25 @@ const { copy } = useClipboard()
           <button i-carbon-copy class="icon-btn m-2" @click="copy(context)" />
         </div>
       </nav>
-      <Editor v-model="context" :matches="matchesList" :line-numbers="leftNumberline" :line-wrapping="lineWrapping" class="my-2 mx-4 flex-auto overflow-y-auto " />
+      <Editor v-model="context" :matches="matchesList" :line-numbers="leftNumberline" :line-wrapping="leftLineWrapping" class="my-2 mx-4 flex-auto overflow-y-auto " />
     </div>
     <div class="w-[50%] flex flex-col h-full  overflow-hidden ">
       <nav class="flex px-4 my-2">
         <div class="flex-auto" />
-        <div v-if="!repleaceState" class="">
-          <button i-carbon-automatic class="icon-btn m-2" />
+        <div :class="rightLineWrapping === true && 'active'" @click="onRightLineWrapping()">
+          <button i-carbon-transpose class="icon-btn m-2" />
         </div>
-        <div v-if="!repleaceState" class="ml-2">
-          <button i-carbon-number-1 class="icon-btn m-2 " />
+        <div v-if="!repleaceState" :class="{ active: index === 0 }">
+          <button i-carbon-automatic class="icon-btn m-2" @click="index = 0" />
         </div>
-        <div v-if="!repleaceState" class="ml-2">
-          <button i-carbon-number-2 class="icon-btn m-2" />
+        <div v-if="!repleaceState" class="ml-2" :class="{ active: index === 1 }">
+          <button i-carbon-number-1 class="icon-btn m-2 " @click="index = 1" />
         </div>
-        <div v-if="!repleaceState" class="ml-2">
-          <button i-carbon-number-3 class="icon-btn m-2" />
+        <div v-if="!repleaceState" class="ml-2" :class="{ active: index === 2 }">
+          <button i-carbon-number-2 class="icon-btn m-2" @click="index = 2" />
+        </div>
+        <div v-if="!repleaceState" class="ml-2" :class="{ active: index === 3 }">
+          <button i-carbon-number-3 class="icon-btn m-2" @click="index = 3" />
         </div>
         <div :class="rightNumberline === true && 'active'" @click="onRightNumberline()">
           <button i-carbon-list-numbered class="icon-btn m-2" />
@@ -45,7 +48,11 @@ const { copy } = useClipboard()
           <button i-carbon-copy class="icon-btn m-2" @click="copy(fullResult)" />
         </div>
       </nav>
-      <Editor v-model="fullResult" :line-numbers="rightNumberline" readonly class="my-2 mx-4 flex-auto  overflow-y-auto" />
+      <Editor
+        v-model="fullResult"
+        :line-numbers="leftNumberline"
+        :line-wrapping="rightLineWrapping" readonly class="my-2 mx-4 flex-auto  overflow-y-auto"
+      />
     </div>
   </div>
 </template>
