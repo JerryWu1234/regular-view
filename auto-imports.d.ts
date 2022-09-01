@@ -39,6 +39,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const index: typeof import('./src/composables/data')['index']
   const initEdior: typeof import('./src/composables/editor')['initEdior']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./src/composables/dark')['isDark']
@@ -47,8 +48,11 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const leftLineWrapping: typeof import('./src/composables/data')['leftLineWrapping']
+  const leftNumberline: typeof import('./src/composables/data')['leftNumberline']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
+  const matchesList: typeof import('./src/composables/data')['matchesList']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -58,15 +62,22 @@ declare global {
   const onDeactivated: typeof import('vue')['onDeactivated']
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onKeyStroke: typeof import('@vueuse/core')['onKeyStroke']
+  const onLeftLineWrapping: typeof import('./src/composables/data')['onLeftLineWrapping']
+  const onLeftNumberline: typeof import('./src/composables/data')['onLeftNumberline']
   const onLongPress: typeof import('@vueuse/core')['onLongPress']
   const onMounted: typeof import('vue')['onMounted']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
+  const onRepleaceNavChange: typeof import('./src/composables/data')['onRepleaceNavChange']
+  const onRightLineWrapping: typeof import('./src/composables/data')['onRightLineWrapping']
+  const onRightNumberline: typeof import('./src/composables/data')['onRightNumberline']
   const onScopeDispose: typeof import('vue')['onScopeDispose']
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const ondeleteContext: typeof import('./src/composables/data')['ondeleteContext']
+  const ondeleteRegularValue: typeof import('./src/composables/data')['ondeleteRegularValue']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const reactify: typeof import('@vueuse/core')['reactify']
@@ -84,9 +95,12 @@ declare global {
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const regularValue: typeof import('./src/composables/data')['regularValue']
   const replaceValue: typeof import('./src/composables/data')['replaceValue']
+  const repleaceState: typeof import('./src/composables/data')['repleaceState']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const rightLineWrapping: typeof import('./src/composables/data')['rightLineWrapping']
+  const rightNumberline: typeof import('./src/composables/data')['rightNumberline']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -314,6 +328,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly index: UnwrapRef<typeof import('./src/composables/data')['index']>
     readonly initEdior: UnwrapRef<typeof import('./src/composables/editor')['initEdior']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
@@ -322,8 +337,11 @@ declare module '@vue/runtime-core' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly leftLineWrapping: UnwrapRef<typeof import('./src/composables/data')['leftLineWrapping']>
+    readonly leftNumberline: UnwrapRef<typeof import('./src/composables/data')['leftNumberline']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly matchesList: UnwrapRef<typeof import('./src/composables/data')['matchesList']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -333,15 +351,22 @@ declare module '@vue/runtime-core' {
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onKeyStroke: UnwrapRef<typeof import('@vueuse/core')['onKeyStroke']>
+    readonly onLeftLineWrapping: UnwrapRef<typeof import('./src/composables/data')['onLeftLineWrapping']>
+    readonly onLeftNumberline: UnwrapRef<typeof import('./src/composables/data')['onLeftNumberline']>
     readonly onLongPress: UnwrapRef<typeof import('@vueuse/core')['onLongPress']>
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
+    readonly onRepleaceNavChange: UnwrapRef<typeof import('./src/composables/data')['onRepleaceNavChange']>
+    readonly onRightLineWrapping: UnwrapRef<typeof import('./src/composables/data')['onRightLineWrapping']>
+    readonly onRightNumberline: UnwrapRef<typeof import('./src/composables/data')['onRightNumberline']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly ondeleteContext: UnwrapRef<typeof import('./src/composables/data')['ondeleteContext']>
+    readonly ondeleteRegularValue: UnwrapRef<typeof import('./src/composables/data')['ondeleteRegularValue']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -359,9 +384,12 @@ declare module '@vue/runtime-core' {
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly regularValue: UnwrapRef<typeof import('./src/composables/data')['regularValue']>
     readonly replaceValue: UnwrapRef<typeof import('./src/composables/data')['replaceValue']>
+    readonly repleaceState: UnwrapRef<typeof import('./src/composables/data')['repleaceState']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly rightLineWrapping: UnwrapRef<typeof import('./src/composables/data')['rightLineWrapping']>
+    readonly rightNumberline: UnwrapRef<typeof import('./src/composables/data')['rightNumberline']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>

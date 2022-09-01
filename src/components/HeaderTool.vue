@@ -1,5 +1,5 @@
 <script setup>
-import { regularValue, replaceValue, signal } from '../composables/index'
+import { regularValue, replaceValue, repleaceState, signal } from '../composables/index'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import { regularValue, replaceValue, signal } from '../composables/index'
       <input v-model="signal" type="text" class="input !py-0 !px-4 !m-2 w-20 rounded" placeholder="signal">
     </div>
     <div class="flex mx-2">
-      <transition name="slide-fade">
+      <transition v-show="repleaceState" name="slide-fade">
         <editor v-model="replaceValue" class="input rounded p-2 m-2 flex-auto" />
       </transition>
     </div>
@@ -19,7 +19,7 @@ import { regularValue, replaceValue, signal } from '../composables/index'
 
 <style lang="css">
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.8s ease-out;
 }
 
 .slide-fade-leave-active {

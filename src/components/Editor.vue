@@ -1,11 +1,17 @@
 <script setup lang='ts'>
 import { initEdior } from '../composables'
-const props = defineProps<{
-  modelValue: String
-}>()
+
+const props = defineProps({
+  modelValue: String,
+  lineNumbers: Boolean,
+  lineWrapping: Boolean,
+  matches: Array,
+  readonly: Boolean,
+})
+
 const editor = ref()
 const text = useVModel(props, 'modelValue')
-initEdior(text, editor)
+initEdior(text, editor, props)
 </script>
 
 <template>
@@ -16,8 +22,9 @@ initEdior(text, editor)
 .cm-focused {
   outline: none !important;
 }
-.cm-editor{
-  overflow: hidden;
+
+.cm-editor {
   height: 100%;
+  /* overflow-y: auto; */
 }
 </style>
