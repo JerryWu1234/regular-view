@@ -5,6 +5,7 @@ import { Compartment, EditorSelection, EditorState, StateEffect, StateField } fr
 import { javascript } from '@codemirror/lang-javascript'
 import type { Ref } from 'vue'
 import type Editor from '../components/Editor.vue'
+import { regularValue } from '../composables/index'
 type Props = InstanceType<typeof Editor>['$props']
 
 const lineWrappingComp = funcLineWrapping()
@@ -35,9 +36,8 @@ const underlineField = StateField.define<DecorationSet>({
   provide: f => EditorView.decorations.from(f),
 })
 
-function underlineSelection(view: EditorView) {
-  const effects: StateEffect<unknown>[] = [{ from: 2, to: 3, empty: false }]
-    .filter(r => !r.empty)
+function underlineSelection(view: EditorView, rangeList: any[]) {
+  const effects: StateEffect<unknown>[] = rangeList
     .map(({ from, to }) => addUnderline.of({ from, to }))
   if (!effects.length)
     return false
@@ -94,15 +94,18 @@ export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props)
       ediorInstance.dispatch({
         changes: { from: 0, to: ediorInstance.state.doc.length, insert: v },
       })
-      // if (v !== '')
-      // underlineSelection(ediorInstance)
     }, { immediate: true })
 
     watch(() => props.matches, (list: Array<RegExpMatchArray>) => {
-      const rangelist = list.map((item) => {
-        return [item?.index as number, item?.index as number + item?.[0]?.length]
-      })
-      console.log(rangelist)
+      if (props.matches?.length > 0 && regularValue.value)
+        underlineSelection(ediorInstance, list)
+    })
+    watch(regularValue, () => {
+      if (props.matches?.length > 0) {
+        ediorInstance.dispatch({
+          changes: { from: 0, to: ediorInstance.state.doc.length, insert: props.modelValue },
+        })
+      }
     })
   })
 }

@@ -33,22 +33,18 @@ const findReg = computed(() => {
   }
 })
 
-const getMathAllList = () => {
-  const list = []
-  for (const item of context.value.matchAll(findReg.value as RegExp))
-    list.push(item)
-
-  return list
-}
-
-export const matchResult = computed(() => {
-  getMathAllList().filter(i => !i).map(i => i?.[0]).join('\n')
-})
-
-export const matchesList = computed(() => Array.from(context.value.matchAll(findReg.value as RegExp)))
+export const matchesList = computed(() => Array.from(context.value.matchAll(findReg.value as RegExp)).map((item) => {
+  return {
+    from: item.index,
+    to: item?.[0]?.length + item?.index,
+  }
+}))
 
 export const fullResult = computed(() => {
-  if (repleaceState.value)
-    return context.value.replaceAll(findReg.value as RegExp, replaceValue.value)
-  else return Array.from(context.value.matchAll(findReg.value as RegExp)).map(i => i?.[index.value]).filter(i => i != null).join('\n')
+  if (repleaceState.value) { return context.value.replaceAll(findReg.value as RegExp, replaceValue.value) }
+  else {
+    return Array.from(context.value.matchAll(findReg.value as RegExp)).map(i => i?.[index.value])
+      .filter(i => i != null)
+      .join('\n')
+  }
 })

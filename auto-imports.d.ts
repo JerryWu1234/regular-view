@@ -52,7 +52,6 @@ declare global {
   const leftNumberline: typeof import('./src/composables/data')['leftNumberline']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
-  const matchResult: typeof import('./src/composables/data')['matchResult']
   const matchesList: typeof import('./src/composables/data')['matchesList']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
@@ -342,7 +341,6 @@ declare module '@vue/runtime-core' {
     readonly leftNumberline: UnwrapRef<typeof import('./src/composables/data')['leftNumberline']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly matchResult: UnwrapRef<typeof import('./src/composables/data')['matchResult']>
     readonly matchesList: UnwrapRef<typeof import('./src/composables/data')['matchesList']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>

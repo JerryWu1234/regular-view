@@ -21,7 +21,13 @@ const { copy } = useClipboard()
           <button i-carbon-copy class="icon-btn m-2" @click="copy(context)" />
         </div>
       </nav>
-      <Editor v-model="context" :matches="matchesList" :line-numbers="leftNumberline" :line-wrapping="leftLineWrapping" class="my-2 mx-4 flex-auto overflow-y-auto " />
+      <Editor
+        v-model="context"
+        :matches="matchesList"
+        :line-numbers="leftNumberline"
+        :line-wrapping="leftLineWrapping"
+        class="my-2 mx-4 flex-auto overflow-y-auto "
+      />
     </div>
     <div class="w-[50%] flex flex-col h-full  overflow-hidden ">
       <nav class="flex px-4 my-2">
@@ -51,7 +57,9 @@ const { copy } = useClipboard()
       <Editor
         v-model="fullResult"
         :line-numbers="leftNumberline"
-        :line-wrapping="rightLineWrapping" readonly class="my-2 mx-4 flex-auto  overflow-y-auto"
+        :line-wrapping="rightLineWrapping"
+        readonly
+        class="my-2 mx-4 flex-auto  overflow-y-auto"
       />
     </div>
   </div>
