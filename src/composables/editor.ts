@@ -88,7 +88,7 @@ export const initEdior = (value: Ref<any>, name: Ref<HTMLElement>, props: Props)
       ediorInstance.dispatch({
         effects: lineWrappingComp.reconfigure(v ? EditorView.lineWrapping : []),
       })
-    })
+    }, { immediate: true })
 
     watch(() => props.modelValue, (v) => {
       ediorInstance.dispatch({
